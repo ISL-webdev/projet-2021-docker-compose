@@ -1,0 +1,5 @@
+src/*
+!src/.gitkeep
+.idea
+.docker/.env
+.docker/nginx/conf.d/default.conf

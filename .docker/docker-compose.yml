@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  database:
+    build:
+      context: './db'
+    environment:
+      - MYSQL_DATABASE=${DATABASE_NAME}
+      - MYSQL_USER=${DATABASE_USER}
+      - MYSQL_PASSWORD=${DATABASE_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DATABASE_ROOT_PASSWORD}
+    ports:
+      - '3306:3306'
+    volumes:
+      - data:/var/lib/mysql
+
+  nginx:
+    build:
+      context: './nginx'
+    links:
+      - php
+    environment:
+      - NGINX_PORT=80
+      - NGINX_HOST=localhost
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ../src/:/var/www/app:cached
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/sites/:/etc/nginx/sites-available
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+  php:
+    build:
+      context: './php'
+    links:
+      - database
+    volumes:
+      - ../src/:/var/www/app:delegated
+      - ./php/php.custom.ini:/usr/local/etc/php/conf.d/app_custom.ini
+
+
+volumes:
+  data:

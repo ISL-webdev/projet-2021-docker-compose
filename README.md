@@ -23,7 +23,13 @@ Pour démarer le projet :
 - `cd .docker`
 - copier le fichier `.docker/.env.dist` vers `.docker/.env` et compléter avec vos paramètres
 - exécuter `docker-compose build && docker-compose up -d`
-- lorsque les containers sont démarrés, vous pouvez créer un nouveau projet `docker-compose exec symfony new src`
+- lorsque les containers sont démarrés, vous pouvez créer un nouveau projet `docker-compose exec php symfony new .`
 - vous pouvez executer les commandes utiles comme **composer** et **bin/console** de deux manières : 
     - soit à l'intérieur du container => `docker-compose exec php sh` pour se connecter au shell
-    - soit à l'extérieur `docker-compose exec php composer require doctrine` ou `docker-compose exec php symfony console cache:clear` 
+    - soit à l'extérieur `docker-compose exec php composer require doctrine` ou `docker-compose exec php symfony console cache:clear`
+    
+### Documentation
+- [https://docs.docker.com/compose/](https://docs.docker.com/compose/)
+- [https://dev.to/martinpham/symfony-5-development-with-docker-4hj8](https://dev.to/martinpham/symfony-5-development-with-docker-4hj8)
+- [https://medium.com/@cleverti/how-to-setup-docker-for-a-symfony-project-26d304359592](https://medium.com/@cleverti/how-to-setup-docker-for-a-symfony-project-26d304359592)
+- [https://github.com/mlocati/docker-php-extension-installer](https://github.com/mlocati/docker-php-extension-installer)

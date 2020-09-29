@@ -20,7 +20,7 @@ COPY --from=symfonycorp/cli /symfony /usr/bin/symfony
 
 WORKDIR /var/www/app
 
-RUN rm src/.gitkeep
+#RUN rm src/.gitkeep
 
 RUN git config --global user.name "Greg Berger" \
     && git config --global user.email "greg@3kd.be"

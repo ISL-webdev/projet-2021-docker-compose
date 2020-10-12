@@ -40,13 +40,13 @@ services:
       - ../app/:/var/www/app:delegated
       - ./php/php.custom.ini:/usr/local/etc/php/conf.d/app_custom.ini
 
-    node:
-      build:
-        context: './node'
-      ports:
-        - '3000:3000'
-      volumes:
-        - ../app:/var/www/app:delegated
+  node:
+    build:
+      context: './node'
+    ports:
+      - '3000:3000'
+    volumes:
+      - ../app:/var/www/app:delegated
 
 volumes:
   data:

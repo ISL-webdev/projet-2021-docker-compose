@@ -26,7 +26,7 @@ services:
       - '80:80'
       - '443:443'
     volumes:
-      - ../src/:/var/www/app:cached
+      - ../app/:/var/www/app:cached
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/templates:/etc/nginx/templates
       - ./nginx/sites/:/etc/nginx/sites-available
@@ -37,8 +37,16 @@ services:
     links:
       - database
     volumes:
-      - ../src/:/var/www/app:delegated
+      - ../app/:/var/www/app:delegated
       - ./php/php.custom.ini:/usr/local/etc/php/conf.d/app_custom.ini
+
+    node:
+      build:
+        context: './node'
+      ports:
+        - '3000:3000'
+      volumes:
+        - ../app:/var/www/app:delegated
 
 volumes:
   data:
